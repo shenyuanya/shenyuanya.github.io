@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh">
+<!-- 屎山代码一期，你真的要看吗（ -->
+<head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="../css/body.css">
+        <title>Welcome to Shenyuanya's Website</title>
+</head>
+<body onload=:"loading()">
+    <div class="body"></div>
+    <center>
+    <h1>Welcome to Shenyuanya's Website!</h1>
+    <p>
+    Sorry,The website is buliding...
+    But you can enter <a href="http://angelstudio.asuscomm.com/">this webside.</a>
+    or <a href="mailto:shenyuanya0813@hotmail.com?
+    subject=Hello"rel="Hello world">my E-mail</a>
+    </p>
+    <h1>站长还在学习HTML语言，还未能完整搭建网站，敬请期待</h1>
+    <h1>恭喜你找到了我的彩蛋，这是我编写的第一个html页面！</h1>
+    <p>
+    一些友情链接：<a href="http://angelstudio.asuscomm.com/"target="_blank">天降工作室</a>
+    </p>
+    </center>
+</body>
+<!--延迟加载-->
+<!--如果要写自定义内容建议都加到这个延迟加载的范围内-->
+<div id="customize" style="display: none;">
+    <div>
+                <!--音乐播放器 自行配置 auto 内容-->
+        <meting-js fixed="true" autoplay="true" theme="#39c5bb" list-folded="true" auto="https://music.163.com/#/song?id=2097828677"></meting-js>
+    </div>
+<!--延迟加载范围到这里结束-->
+</div>
+
+<meting-js fixed="true" autoplay="true" theme="#409EFF" list-folded="true" auto="https://music.163.com/#/song?id=2097828677"></meting-js>
+
+<!--延迟加载配套使用JS-->
+<script>
+    let interval = setInterval(() => {
+        if (document.querySelector(".footer")) {
+            document.querySelector("#customize").style.display = "";
+            clearInterval(interval);
+        }
+    }, 200);
+</script>
+
+<!-- 网页鼠标点击特效 - 爱心 -->
+<script type="text/javascript">
+         ! function (e, t, a) {
+            function r() {
+                for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[
+                        e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x +
+                    "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e]
+                    .scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
+                requestAnimationFrame(r)
+            }
+            function n() {
+                var t = "function" == typeof e.onclick && e.onclick;
+                e.onclick = function (e) {
+                    t && t(), o(e)
+                }
+            }
+
+            function o(e) {
+                var a = t.createElement("div");
+                a.className = "heart", s.push({
+                    el: a,
+                    x: e.clientX - 5,
+                    y: e.clientY - 5,
+                    scale: 1,
+                    alpha: 1,
+                    color: c()
+                }), t.body.appendChild(a)
+            }
+
+            function i(e) {
+                var a = t.createElement("style");
+                a.type = "text/css";
+                try {
+                    a.appendChild(t.createTextNode(e))
+                } catch (t) {
+                    a.styleSheet.cssText = e
+                }
+                t.getElementsByTagName("head")[0].appendChild(a)
+            }
+
+            function c() {
+                return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math
+                    .random()) + ")"
+            }
+            var s = [];
+            e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e
+                .mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
+                    setTimeout(e, 1e3 / 60)
+                }, i(
+                    ".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"
+                ), n(), r()
+        }(window, document);
+
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=String.prototype.replaceAll"></script>
+
+<!--音乐播放器所用的文件-->
+<!-- require APlayer -->
+<link rel="stylesheet" href="https://npm.elemecdn.com/aplayer@1.10.1/dist/APlayer.min.css">
+<script src="https://npm.elemecdn.com/aplayer@1.10.1/dist/APlayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://npm.elemecdn.com/meting2@0.0.1/js/Meting.min.js"></script>
+<code class="html"><footer>
+    <center><p>Copyright © 2025 Shenyuan</p></center>
+    <nav>
+    <center><a href="https://icp.gov.moe/?keyword=20250813"target="_blank">萌ICP备20250813号
+    </a></center>
+    </nav>
+</footer></code>
+</html>
+<!-- 背景图片来源未知，若侵权，请联系删除 -->
