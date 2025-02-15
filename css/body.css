@@ -1,9 +1,9 @@
-body {
-            width: 200px;
-            height: 200px;
-            padding: 30px;
-            border: 5px dashed red;
-            margin: 20px;
-            /* background-color: slateblue;  背景颜色 */
-            background-image: url(https://s1.imagehub.cc/images/2025/02/08/220ff6d4e5da2d6d3a8e78912b7156f3.jpg);
-        }
+body{
+    padding: 0;
+    background-image: url("https://s1.imagehub.cc/images/2025/02/08/220ff6d4e5da2d6d3a8e78912b7156f3.jpg");
+    background-repeat: no-repeat;
+    background-attachment:fixed;
+    background-size:cover;
+    background-position:center;
+    font-family:Font;
+}
