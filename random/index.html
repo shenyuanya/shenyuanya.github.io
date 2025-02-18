@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>随机数生成器 - 带动画</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #333;
+            height: 60px;
+            overflow: hidden;
+            position: relative;
+        }
+        .result span {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 1;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .result span.hide {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>随机数生成器 - 带动画</h1>
+        <label for="min">最小值:</label>
+        <input type="number" id="min" placeholder="输入最小值">
+
+        <label for="max">最大值:</label>
+        <input type="number" id="max" placeholder="输入最大值">
+
+        <label for="exclude">排除的数字 (用逗号分隔):</label>
+        <input type="text" id="exclude" placeholder="例如: 1,2,3">
+
+        <button onclick="generateRandomNumber()">生成随机数</button>
+
+        <div class="result" id="result">
+            <span id="numberDisplay">0</span>
+        </div>
+    </div>
+
+    <script>
+        function generateRandomNumber() {
+            const min = parseInt(document.getElementById('min').value);
+            const max = parseInt(document.getElementById('max').value);
+            const excludeInput = document.getElementById('exclude').value;
+
+            // 将排除的数字转换为数组
+            const excludeNumbers = excludeInput.split(',').map(num => parseInt(num.trim()));
+
+            // 生成随机数
+            let randomNumber;
+            do {
+                randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+            } while (excludeNumbers.includes(randomNumber));
+
+            // 显示动画
+            animateNumber(randomNumber);
+        }
+
+        function animateNumber(targetNumber) {
+            const numberDisplay = document.getElementById('numberDisplay');
+            let currentNumber = parseInt(numberDisplay.innerText);
+            const steps = 30; // 增加动画步数，使动画时间更长
+            const delay = 100; // 增加每步延迟时间，使动画更慢
+
+            // 开始动画
+            let step = 0;
+            const interval = setInterval(() => {
+                if (step >= steps) {
+                    clearInterval(interval);
+                    numberDisplay.innerText = targetNumber;
+                    return;
+                }
+                // 生成一个中间值
+                const intermediateNumber = Math.floor(currentNumber + (targetNumber - currentNumber) * (step / steps));
+                numberDisplay.innerText = intermediateNumber;
+                step++;
+            }, delay);
+        }
+    </script>
+</body>
+</html>
