@@ -1,146 +1,32 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>随机数生成器 - 带动画</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 50px;
-        }
-        .container {
-            max-width: 400px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        label {
-            display: block;
-            margin-bottom: 10px;
-        }
-        input, button {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            box-sizing: border-box;
-        }
-        .result {
-            margin-top: 20px;
-            font-size: 2.5em;
-            font-weight: bold;
-            color: #333;
-            height: 60px;
-            overflow: hidden;
-            position: relative;
-        }
-        .result span {
-            display: inline-block;
-            width: 100%;
-            text-align: center;
-            position: absolute;
-            top: 0;
-            left: 0;
-            opacity: 1;
-            transition: opacity 0.3s ease-in-out;
-        }
-        .error {
-            color: red;
-            font-size: 0.9em;
-            margin-bottom: 10px;
-        }
-    </style>
+    <title>高级随机数生成器</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>随机数生成器 - 带动画</h1>
-        <label for="min">最小值:</label>
-        <input type="number" id="min" placeholder="输入最小值">
-        <div id="minError" class="error"></div>
-
-        <label for="max">最大值:</label>
-        <input type="number" id="max" placeholder="输入最大值">
-        <div id="maxError" class="error"></div>
-
-        <label for="exclude">排除的数字 (用逗号分隔):</label>
-        <input type="text" id="exclude" placeholder="例如: 1,2,3">
-        <div id="excludeError" class="error"></div>
-
-        <button onclick="generateRandomNumber()">生成随机数</button>
-
-        <div class="result" id="result">
-            <span id="numberDisplay">0</span>
+        <h1>高级随机数生成器</h1>
+        
+        <div class="input-group">
+            <label for="min">最小值:</label>
+            <input type="number" id="min" value="1" min="0">
+            
+            <label for="max">最大值:</label>
+            <input type="number" id="max" value="100" min="1">
         </div>
+
+        <div class="input-group">
+            <label for="exclude">排除数字 (用逗号分隔):</label>
+            <input type="text" id="exclude" placeholder="例如: 5,13,42">
+        </div>
+
+        <div id="randomNumber" class="random-number">0</div>
+        <button id="generateButton">生成随机数</button>
+        <div id="error" class="error-message"></div>
     </div>
-
-    <script>
-        function generateRandomNumber() {
-            // 清空错误提示
-            document.getElementById('minError').innerText = '';
-            document.getElementById('maxError').innerText = '';
-            document.getElementById('excludeError').innerText = '';
-
-            // 获取输入值
-            const min = parseInt(document.getElementById('min').value);
-            const max = parseInt(document.getElementById('max').value);
-            const excludeInput = document.getElementById('exclude').value;
-
-            // 输入验证
-            if (isNaN(min) || isNaN(max)) {
-                document.getElementById('minError').innerText = '请输入有效的数字！';
-                return;
-            }
-            if (min >= max) {
-                document.getElementById('minError').innerText = '最小值必须小于最大值！';
-                return;
-            }
-            if (excludeInput) {
-                const excludeNumbers = excludeInput.split(',').map(num => parseInt(num.trim()));
-                if (excludeNumbers.some(num => isNaN(num) || excludeNumbers.some(num => num < min || num > max)) {
-                    document.getElementById('excludeError').innerText = '排除的数字必须在范围内且为有效数字！';
-                    return;
-                }
-            }
-
-            // 将排除的数字转换为数组
-            const excludeNumbers = excludeInput.split(',').map(num => parseInt(num.trim()));
-
-            // 生成随机数
-            let randomNumber;
-            let attempts = 0;
-            const maxAttempts = 1000; // 防止无限循环
-            do {
-                randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-                attempts++;
-                if (attempts > maxAttempts) {
-                    document.getElementById('excludeError').innerText = '无法生成符合条件的随机数，请调整范围或排除数字！';
-                    return;
-                }
-            } while (excludeNumbers.includes(randomNumber));
-
-            // 显示动画
-            animateNumber(randomNumber);
-        }
-
-        function animateNumber(targetNumber) {
-            const numberDisplay = document.getElementById('numberDisplay');
-            let currentNumber = parseInt(numberDisplay.innerText);
-            const steps = 30; // 增加动画步数，使动画时间更长
-            const delay = 100; // 增加每步延迟时间，使动画更慢
-
-            // 开始动画
-            let step = 0;
-            const interval = setInterval(() => {
-                if (step >= steps) {
-                    clearInterval(interval);
-                    numberDisplay.innerText = targetNumber;
-                    return;
-                }
-                // 生成一个中间值
-                const intermediateNumber = Math.floor(currentNumber + (targetNumber - currentNumber) * (step / steps));
-                numberDisplay.innerText = intermediateNumber;
-                step++;
-            }, delay);
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
