@@ -16,3 +16,12 @@ document.getElementById('generateButton').addEventListener('click', function() {
     // 更新显示的随机数
     randomNumberElement.textContent = randomNumber;
 });
+/* 针对不支持backdrop-filter的浏览器 */
+@supports not (backdrop-filter: blur(12px)) {
+    .glass-container {
+        background: rgba(255, 255, 255, 0.9);
+    }
+    .random-number {
+        background: rgba(255, 255, 255, 0.7);
+    }
+}
