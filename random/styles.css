@@ -193,3 +193,53 @@ button::after {
     display: inline-block;
     border: 2px solid rgba(255, 255, 255, 0.5);
 }
+/* 修改后的兼容性处理 */
+.glass-container {
+    /* 现代浏览器样式 */
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+/* 传统浏览器备用方案 */
+@supports not (backdrop-filter: blur(12px)) {
+    .glass-container {
+        background: linear-gradient(
+            to bottom right,
+            rgba(255, 255, 255, 0.8),
+            rgba(255, 255, 255, 0.5)
+        );
+        position: relative;
+        overflow: hidden;
+    }
+    
+    /* 创建伪模糊层 */
+    .glass-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: inherit;
+        filter: blur(8px);
+        z-index: -1;
+        margin: -20px;
+    }
+
+    /* 调整数字显示效果 */
+    .random-number {
+        background: rgba(255, 255, 255, 0.7);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* 优化容器层级 */
+    body {
+        background: #e6f7f6;
+    }
+    
+    /* 增强按钮质感 */
+    button {
+        box-shadow: 0 4px 12px rgba(57, 197, 187, 0.2);
+    }
+}
