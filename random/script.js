@@ -54,3 +54,28 @@ document.getElementById('generateButton').addEventListener('click', function() {
         this.disabled = false;
     }
 });
+// script.js 添加移动端事件支持
+document.addEventListener('DOMContentLoaded', function() {
+    // 阻止双击缩放
+    let lastTouchEnd = 0;
+    document.addEventListener('touchend', function(event) {
+        const now = Date.now();
+        if (now - lastTouchEnd <= 300) {
+            event.preventDefault();
+        }
+        lastTouchEnd = now;
+    }, false);
+
+    // 阻止手势缩放
+    document.addEventListener('gesturestart', function(e) {
+        e.preventDefault();
+    });
+});
+
+// 修改原有生成器代码，添加触摸反馈
+document.getElementById('generateButton').addEventListener('touchstart', function() {
+    this.classList.add('touch-active');
+});
+document.getElementById('generateButton').addEventListener('touchend', function() {
+    this.classList.remove('touch-active');
+});
