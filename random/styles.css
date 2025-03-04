@@ -302,3 +302,14 @@ input, textarea {
         font-size: 16px !important;
     }
 }
+/* 新增触摸反馈样式 */
+button.touch-active {
+    transform: scale(0.95) !important;
+    opacity: 0.9;
+}
+
+/* 禁用文本缩放 */
+html {
+    text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
