@@ -1,4 +1,11 @@
-/* 修改后的 styles.css */
+/* styles.css */
+:root {
+    --primary-color: #39c5bb;
+    --primary-dark: #2fa89f;
+    --primary-light: rgba(57, 197, 187, 0.1);
+    --error-color: #ff4d4d;
+}
+
 body {
     font-family: Arial, sans-serif;
     display: flex;
@@ -15,43 +22,85 @@ body {
     padding: 25px;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: border-color 0.3s ease;
+    border: 2px solid transparent;
 }
 
-/* 修改主题色相关样式 */
+.container:hover {
+    border-color: var(--primary-light);
+}
+
+.random-number {
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 20px 0;
+    color: var(--primary-color);
+    text-shadow: 0 2px 4px rgba(57, 197, 187, 0.2);
+    transition: transform 0.3s ease;
+}
+
 button {
-    background-color: #39c5bb;
+    padding: 12px 24px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 button:hover {
-    background-color: #2fa89f;
+    background-color: var(--primary-dark);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(57, 197, 187, 0.3);
 }
 
+.input-group {
+    margin: 15px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+input[type="number"],
+input[type="text"] {
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
 input:focus {
-    border-color: #39c5bb;
-    box-shadow: 0 0 0 3px rgba(57, 197, 187, 0.1);
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px var(--primary-light);
 }
 
-.random-number {
-    color: #39c5bb;
-    text-shadow: 0 2px 4px rgba(57, 197, 187, 0.2);
+.error-message {
+    color: var(--error-color);
+    margin-top: 10px;
+    min-height: 20px;
+    font-weight: bold;
 }
 
-/* 更新后的弹跳动画 */
+/* 动画修正 */
 @keyframes bounce {
     0%, 100% { transform: scale(1); }
     30% { transform: scale(1.25); }
     60% { transform: scale(0.95); }
 }
 
-/* 更新容器边框动画 */
-.container {
-    transition: border-color 0.3s ease;
-    border: 2px solid transparent;
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-12px); }
+    75% { transform: translateX(12px); }
 }
 
-.container:hover {
-    border-color: rgba(57, 197, 187, 0.1);
+.bounce {
+    animation: bounce 0.6s ease;
+}
+
+.shake {
+    animation: shake 0.4s ease;
 }
